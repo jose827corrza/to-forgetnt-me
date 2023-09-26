@@ -10,7 +10,9 @@ export default {
       'dark-blue': '#071952',
       'teal': '#0B666A',
       'semi-mint': '#35A29F',
-      'mint': '#97FEED'
+      'mint': '#97FEED',
+      'dark': '#000000',
+      'white': '#ffffff'
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],

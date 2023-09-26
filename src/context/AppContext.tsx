@@ -1,8 +1,11 @@
+import { UserCredential } from 'firebase/auth';
 import { createContext, useState} from 'react'
 
 interface Context {
     isDarkMode: boolean
     toggleDarkMode: () => void
+    userCredential: UserCredential | null
+    assignUserCredential: (user: UserCredential) => void
 }
 
 export const AppContext = createContext<Context>({});
@@ -10,6 +13,7 @@ export const AppContext = createContext<Context>({});
 export const AppContextProvider = ({children}) => {
 
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+    const [userCredential, setUserCredential] = useState<UserCredential | null>(null)
 
     const toggleDarkMode = () => {
         if(!isDarkMode){
@@ -21,11 +25,17 @@ export const AppContextProvider = ({children}) => {
         }
     }
 
+    const assignUserCredential = (user: UserCredential) => {
+        setUserCredential(user)
+    }
+
     return (
         <AppContext.Provider 
             value={{
                 isDarkMode, 
-                toggleDarkMode
+                toggleDarkMode,
+                userCredential,
+                assignUserCredential
             }}>
             {children}
         </AppContext.Provider>

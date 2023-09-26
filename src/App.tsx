@@ -1,13 +1,16 @@
-import { Home } from "./pages/Home"
+import { Layout } from "./containers/Layout"
+import { Login } from "./pages/Login"
+import { initializeFirebase } from "./firebase/firebase"
 
 function App() {
 
+const {app, auth} = initializeFirebase();
+
   return (
     <>
-      <div >
-        <h1 className="text-3xl">test</h1>
-        <Home />
-      </div>
+      <Layout>
+        <Login />
+      </Layout>
     </>
   )
 }
