@@ -1,14 +1,21 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Formik, Form, Field, FormikProps } from "formik"
 
 import { loginUser, registerNewUser } from "../firebase/auth";
 import { AppContext } from "../context/AppContext";
+import { NavContext } from '../context/NavigationContext';
 
 export const Login = () => {
 
-    const { assignUserCredential } = useContext(AppContext);
+    const { assignUserCredential, userCredential } = useContext(AppContext);
+    const { navigate } = useContext(NavContext);
     const [isRegisterPage, setIsRegisterPage] = useState(false);
+
+    useEffect(() => {
+        console.log(userCredential);
+        
+    })
     
     const handlerToggleAuth = () => {
         setIsRegisterPage(!isRegisterPage);
@@ -33,7 +40,7 @@ export const Login = () => {
                 return
             }else{
                 assignUserCredential(user);
-                
+                navigate('/home')
             }
         } else {
             // Register

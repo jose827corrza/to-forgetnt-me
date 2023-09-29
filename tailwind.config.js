@@ -8,6 +8,7 @@ export default {
   theme: {
     colors: {
       'dark-blue': '#071952',
+      'dark-blue-soft': '#0D2D96',
       'teal': '#0B666A',
       'semi-mint': '#35A29F',
       'mint': '#97FEED',
@@ -18,7 +19,11 @@ export default {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
     },
-    extend: {},
+    extend: {
+      animation: {
+        'spin-slow': 'spin 5s linear infinite',
+      }
+    },
   },
   plugins: [],
 }

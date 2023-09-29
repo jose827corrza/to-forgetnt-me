@@ -1,9 +1,14 @@
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import { AppContext } from '../context/AppContext'
 
 export const Home = () => {
 
-    const { isDarkMode, toggleDarkMode} = useContext(AppContext);
+    const { isDarkMode, toggleDarkMode, userCredential} = useContext(AppContext);
+
+    useEffect(() => {
+      console.log(userCredential);
+      
+    },[])
 
   return (
     <>
