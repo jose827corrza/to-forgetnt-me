@@ -9,7 +9,9 @@ import { ModifyTask } from "./pages/ModifyTask";
 import { Tasks } from "./pages/Tasks";
 import { NavContextProvider } from './context/NavigationContext';
 import { NavBar } from './components/NavBar';
-import { Test } from './pages/Test';
+import { Posts } from './pages/Posts';
+import { PostDetail } from './pages/PostDetail';
+import { CreatePost } from './pages/CreatePost';
 
 function App() {
 
@@ -20,6 +22,10 @@ function App() {
       {path: '/tasks', element: <Tasks />, children: [
         {path: '/tasks/:taskId', element: <ModifyTask />},
         {path: '/tasks', element: <ModifyTask />}
+      ]},
+      {path: '/posts', element: <Posts />, children: [
+        {path: '/posts/:postId', element: <PostDetail />},
+        {path: '/posts', element: <CreatePost />},
       ]},
       {path: '*', element: <NotFound />},
     ])

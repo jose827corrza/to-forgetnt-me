@@ -1,31 +1,32 @@
 import { useContext, useEffect, useState } from 'react'
 import { Outlet, useOutletContext } from 'react-router-dom'
 
-import { Task } from '../types/Tasks'
-import { TaskCard } from '../components/TaskCard'
+
 import { AppContext } from '../context/AppContext'
 import { NavContext } from '../context/NavigationContext'
-import { getAllTasks } from '../firebase/datastore'
+import { getAllPosts } from '../firebase/datastore'
 import { SyncLoader } from 'react-spinners'
+import { Post } from '../types/Post'
+import { PostCard } from '../components/PostCard'
 
-export const Tasks = () => {
+export const Posts = () => {
 
   const { isLogged, userCredential } = useContext(AppContext);
   const { navigate } = useContext(NavContext);
 
-  const [tasks, setTasks] = useState<Task[]>([])
+  const [posts, setPosts] = useState<Post[]>([])
   const loadingTime = 2000
 
   const [isLoading, setIsLoading] = useState(true);
-console.log(tasks);
+console.log(posts);
 
-  const triggerUpdateTasks = async() => {
+  const triggerUpdatePosts = async() => {
     console.log('init trigger');
     
     setIsLoading(true)
     if(userCredential){
-      const test =await getAllTasks(userCredential.user.uid)
-      setTasks(test)
+      const test =await getAllPosts()
+      setPosts(test)
     }
 
 
@@ -41,29 +42,24 @@ console.log(tasks);
       navigate('/')
       return
     }
-    if(userCredential && tasks.length <= 0){
-      // (async() =>{
-      //   const test = await getAllTasks(userCredential?.user.uid);
-      //   setTasks(test)
-      //   console.log(test);
-      // })()
+    if(userCredential && posts.length <= 0){
       if(isLoading){
         (async() => {
-            const test =await getAllTasks(userCredential.user.uid)
-            setTasks(test)
+            const test = await getAllPosts()
+            setPosts(test)
         })()
         setTimeout(() => {
             setIsLoading(false)
         }, loadingTime)
     }
     }
-  },[isLogged, tasks])
+  },[isLogged, posts])
 
 
 
   return (
     <>
-    <div className='md:grid grid-flow-dense grid-cols-4 grid-rows-1 h-full'>
+    <div className='md:grid grid-flow-dense grid-cols-4 grid-rows-1 h-full pt-1'>
       {/* <aside className='flex flex-col fixed left-0 border border-black rounded-lg  bg-white w-40'> */}
       <aside className='col-span-1  h-full bg-background-soft overflow-y-scroll pt-2'>
         <ul>
@@ -76,26 +72,26 @@ console.log(tasks);
           />
           </div>
           :
-          tasks.map((task) => (
-            <li key={task.id}>
-            <TaskCard name={task.name} description={task.description} id={task.id!} updateTaskListFunc={triggerUpdateTasks} userId={userCredential?.user.uid}/>
-          </li>
+          posts.map((post) => (
+              <li key={post.id} className='p-2'>
+                <PostCard id={post.id} userId={post.userId} topics={post.topics} name={post.name} body={post.body} createdAt={post.createdAt} testArray={[]} comments={[]} />
+              </li>
         ))
       }
       </ul>
       
       </aside>
         <div className='col-span-3'>
-        {/* <Outlet context={{tasks, setUpdateTasks, updateTasks} satisfies TasksContext}/> */}
-        <Outlet context={{tasks, triggerUpdateTasks} satisfies TasksContext}/>
+        {/* <Outlet context={{posts, setUpdateposts, updateposts} satisfies postsContext}/> */}
+        <Outlet context={{posts, triggerUpdatePosts, isLoading} satisfies postsContext}/>
         </div>
     </div>
     </>
   )
 }
 
-type TasksContext ={triggerUpdateTasks: () => void, tasks: Task[]}
-export function useTasks () {
-  return useOutletContext<TasksContext>();
+type postsContext ={triggerUpdatePosts: () => void, posts: Post[], isLoading: boolean}
+export function usePosts () {
+  return useOutletContext<postsContext>();
 }
 

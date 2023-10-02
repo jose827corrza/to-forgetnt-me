@@ -21,12 +21,12 @@ export const TaskCard = ({name, description, id, userId, updateTaskListFunc}:Car
 
   return (
     <Link to={`/tasks/${id}`}>
-        <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto bg-semi-mint my-1">
+        <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto bg-headers border-none my-1">
         {/* <div className="animate-pulse flex space-x-4"> */}
         <div className=" flex space-x-4">
             <div className="flex-1 space-y-6 py-1">
             <div className="h-2 ">
-                <p className="font-semibold text-white">{name}</p>
+                <p className="font-semibold text-black">{name}</p>
             </div>
             <div className="space-y-3">
                 <div className="grid grid-cols-3 gap-4">

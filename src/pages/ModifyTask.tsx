@@ -113,8 +113,8 @@ console.log(taskId);
 
   
   return (
-    <div className="flex flex-col h-full justify-center items-center bg-dark-blue">
-      <h1 className='text-3xl text-white font-extrabold mb-20'>{!taskId ?  'Create your TODO' : 'Update your TODO'}</h1>
+    <div className="flex flex-col h-full justify-center items-center bg-background">
+      <h1 className='text-3xl text-black font-extrabold mb-20'>{!taskId ?  'Create your TODO' : 'Update your TODO'}</h1>
       {
         isLoading ?
         <SyncLoader
@@ -130,20 +130,20 @@ console.log(taskId);
           ({values}) => (
             <Form className="md:flex">
           <div className='grid md:flex my-2'>
-            <label htmlFor="name" className="text-white mx-3 font-bold">Name</label>
+            <label htmlFor="name" className="text-black mx-3 font-bold">Name</label>
             <Field name="name" type="text" className='rounded-md outline-none h-6 my-2'/>
           </div>
           <div className='grid md:flex my-2'>
-            <label htmlFor="description" className="text-white mx-3 font-bold">Description</label>
+            <label htmlFor="description" className="text-black mx-3 font-bold">Description</label>
             <Field name="description" type="text" className='rounded-md outline-none h-6 my-2'/>
           </div>
           <div className='grid md:flex mx-2 pt-4'>
-            <label className='text-white'>
+            <label className='text-black'>
               <Field type="checkbox" name="isComplete" />
               {`This task is:${values.isComplete ? 'Complete!' : 'Not complete'}`}
             </label>
           </div>
-          <button type="submit" className=" mx-3 bg-semi-mint hover:bg-mint rounded-md h-8 px-2 md:my-3 ">{!taskId ?  'Create TODO' : 'Update TODO'}</button>
+          <button type="submit" className=" mx-3 bg-headers hover:bg-mint rounded-md h-8 px-2 md:my-3 ">{!taskId ?  'Create TODO' : 'Update TODO'}</button>
         </Form>
           )
         }

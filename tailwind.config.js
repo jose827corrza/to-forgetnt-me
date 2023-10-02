@@ -13,7 +13,12 @@ export default {
       'semi-mint': '#35A29F',
       'mint': '#97FEED',
       'dark': '#000000',
-      'white': '#ffffff'
+      'white': '#ffffff',
+      'background': '#F8F6F4',
+      'components': '#E3F4F4',
+      'headers': '#D2E9E9',
+      'titles': '#C4DFDF',
+      'gray-200': '#B2BABB'
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],

@@ -7,6 +7,7 @@ interface Context {
     toggleDarkMode: () => void
     userCredential: UserCredential | null
     assignUserCredential: (user: UserCredential) => void
+    unassignUserCredentials: () => void
     isLogged: boolean
     uid: string | undefined
     loading: boolean
@@ -41,6 +42,10 @@ export const AppContextProvider = ({children}) => {
         setUid(user.user.uid)
     }
 
+    const unassignUserCredentials = () =>{
+        setUserCredential(null)
+    }
+
     return (
         <AppContext.Provider 
             value={{
@@ -52,6 +57,7 @@ export const AppContextProvider = ({children}) => {
                 uid,
                 loading,
                 setLoading,
+                unassignUserCredentials
             }}>
             {children}
         </AppContext.Provider>
