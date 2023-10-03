@@ -76,7 +76,7 @@ export const Login = () => {
                     <button type="submit" className=" mx-3 bg-headers hover:bg-mint rounded-md h-8 px-2 md:my-3 ">{!isRegisterPage ?  'Login' : 'Sign Up'}</button>
                 </Form>
         </Formik>
-        <button className="text-black font-sans font-extralight" onClick={handlerToggleAuth}>{ !isRegisterPage ? 'Not registered yet? register here': 'Are you already registered? Log In here'}</button>
+        <button className="text-black font-sans font-extralight underline" onClick={handlerToggleAuth}>{ !isRegisterPage ? 'Not registered yet? register here': 'Are you already registered? Log In here'}</button>
     </div>
   )
 }
