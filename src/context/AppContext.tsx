@@ -1,4 +1,5 @@
-import { createContext, useState} from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { createContext, useState, ReactNode} from 'react'
 
 import { UserCredential } from 'firebase/auth';
 
@@ -14,9 +15,31 @@ interface Context {
     setLoading: (state: boolean) => void
 }
 
-export const AppContext = createContext<Context>({});
+export const AppContext = createContext<Context>({
+    isDarkMode: false,
+    loading: false,
+    toggleDarkMode: function (): void {
+        throw new Error('Function not implemented.');
+    },
+    userCredential: null,
+    assignUserCredential: function (_user: UserCredential): void {
+        throw new Error('Function not implemented.');
+    },
+    unassignUserCredentials: function (): void {
+        throw new Error('Function not implemented.');
+    },
+    isLogged: false,
+    uid: undefined,
+    setLoading: function (_state: boolean): void {
+        throw new Error('Function not implemented.');
+    }
+});
 
-export const AppContextProvider = ({children}) => {
+interface Props {
+    children? : ReactNode
+}
+
+export const AppContextProvider = ({children}: Props ) => {
 
 
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false)

@@ -22,7 +22,8 @@ export const getAllTasks = async(userId: string) => {
         const task: Task = {
             id: doc.id,
             name: descomp.name,
-            description: descomp.description
+            description: descomp.description,
+            isComplete: descomp.isComplete
         }
         tasks.push(task)
     })
