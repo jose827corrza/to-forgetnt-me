@@ -26,12 +26,12 @@ export const ModifyTask = () => {
     setIsLoading(true);
         // TODO bring information
         // Set the initial value values
-          const test = await getTaskInformation(userId, taskID)
-          if(test){
+          const task = await getTaskInformation(userId, taskID)
+          if(task){
             setInitialValue({
-              name: test.name,
-              description: test.description,
-              isComplete: test.isComplete
+              name: task.name,
+              description: task.description,
+              isComplete: task.isComplete
             })
           }  
           setTimeout(()=>{
@@ -101,10 +101,11 @@ export const ModifyTask = () => {
               await triggerUpdate(userCredential.user.uid, taskId)
             })()
           }else{
+            setInitialValue({name: '', description: '', isComplete: false})
             setIsLoading(false)
           }
         }
-
+        setInitialValue({name: '', description: '', isComplete: false})
   },[ taskId])
 console.log(taskId);
 

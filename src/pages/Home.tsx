@@ -36,21 +36,24 @@ export const Home = () => {
 
   return (
     <>
-    {
-      isLoading ?
-      <SyncLoader
-            color="#36d7b7"
-            size={20}
-          />
-      :
-      <div className='flex h-full flex-col justify-end items-center'>
-        <h2 className='text-3xl font-sans font-extrabold capialize'>Welcome to Forget'nt</h2>
-        <img 
-          src={image} 
-          alt="logo"
-          className='scale-50 opacity-60' />
+      <div className='flex h-full flex-col justify-center items-center'>
+        {
+          isLoading ?
+          <SyncLoader
+                color="#36d7b7"
+                size={20}
+              />
+          :
+          <>
+            <h2 className='text-3xl font-sans font-extrabold text-black capialize'>Welcome to Forget'nt</h2>
+            <img 
+              src={image} 
+              alt="logo"
+              className='scale-50 opacity-60' />
+          </>
+
+        }
       </div>
-    }
         {/* <div>Home</div>
         <h1>{isDarkMode}</h1>
         <button onClick={toggleDarkMode}>
