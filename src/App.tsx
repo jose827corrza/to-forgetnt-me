@@ -32,7 +32,7 @@ function App() {
     return routes;
   }
 
-const {app, auth} = initializeFirebase();
+initializeFirebase();
 
   return (
     <>

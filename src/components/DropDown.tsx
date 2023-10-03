@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext'
 import { NavContext } from '../context/NavigationContext'
 import { logOut } from '../firebase/auth'
 
-function classNames(...classes) {
+function classNames(...classes: [string, string]) {
   return classes.filter(Boolean).join(' ')
 }
 

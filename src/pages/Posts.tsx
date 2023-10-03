@@ -74,7 +74,7 @@ console.log(posts);
           :
           posts.map((post) => (
               <li key={post.id} className='p-2'>
-                <PostCard id={post.id} userId={post.userId} topics={post.topics} name={post.name} body={post.body} createdAt={post.createdAt} testArray={[]} comments={[]} />
+                <PostCard id={post.id} userId={post.userId} topics={post.topics} name={post.name} body={post.body} createdAt={post.createdAt} comments={[]} />
               </li>
         ))
       }

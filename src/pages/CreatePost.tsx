@@ -1,4 +1,5 @@
-import { Formik, Form, FormikHelpers, FormikValues, Field, FormikProps } from 'formik'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Formik, Form, Field, FormikHelpers } from 'formik'
 import { useState, useContext } from 'react';
 import { Post } from '../types/Post';
 import { AppContext } from '../context/AppContext';
@@ -9,24 +10,19 @@ import { usePosts } from './Posts';
 export const CreatePost = () => {
     const {userCredential} = useContext(AppContext)
     const {triggerUpdatePosts} = usePosts()
-    const [isLoading, setIsLoading] = useState(true);
     const [initialValues, setInitialValue] = useState({
         title: '',
         body: '',
         topics: ''
     })
 
-    interface FormValues {
-        title: string
-        body: string
-        topics: string
-      }
+
     interface props {
         title: string
         body: string
         topics: string    
     }
-    const handleCreatePost = async(props: props & FormikProps<FormValues>) => {
+    const handleCreatePost = async(props: props, _actions: FormikHelpers<props>) => {
         const {topics, title, body} = props
         const topicsList = topics.split(';')
         const newPost: Post = {
@@ -49,7 +45,7 @@ export const CreatePost = () => {
     <div className='flex h-full justify-center items-center'>
        <Formik 
         initialValues={initialValues}
-        onSubmit={(values) => handleCreatePost(values)}
+        onSubmit={(values: props, actions: FormikHelpers<props>) => handleCreatePost(values, actions)}
        >
         <Form className="md:flex md:flex-col">
             <div className='md:grid grid-flow-col'>

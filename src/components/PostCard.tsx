@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Post } from '../types/Post'
 
 
-export const PostCard = ({name, createdAt, body, topics, id}: Post) => {
+export const PostCard = ({name, body, topics, id}: Post) => {
   return (
     <Link to={`/posts/${id}`}>
         <div className="max-w-sm rounded overflow-hidden shadow-lg bg-components">

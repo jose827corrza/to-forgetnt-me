@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react';
 
-import { Form, Formik, Field, FormikProps } from 'formik'
+import { Form, Formik, Field, FormikHelpers } from 'formik'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { SyncLoader } from 'react-spinners'
 
@@ -9,16 +9,15 @@ import { createNewTask, getTaskInformation, updateTaskInformation } from '../fir
 import { AppContext } from '../context/AppContext';
 import { Task } from '../types/Tasks';
 import { useTasks } from './Tasks'
-import { NavContext} from '../context/NavigationContext'
 
 export const ModifyTask = () => {
 
 
   const { userCredential } = useContext(AppContext)
-  const { navigate } = useContext(NavContext)
+  // const { navigate } = useContext(NavContext)
   const { taskId } = useParams();
   
-  const {tasks, triggerUpdateTasks} = useTasks()
+  const {triggerUpdateTasks} = useTasks()
 
   const [initialValue, setInitialValue] = useState({name: '', description: '', isComplete: false})
   const [isLoading, setIsLoading] = useState(true);
@@ -42,16 +41,14 @@ export const ModifyTask = () => {
 
   }
   
-  interface FormValues {
-    name: string;
-    description: string;
-  }
+
   interface props {
     name: string
     description: string
     isComplete: boolean
   }
-  const handleTask = async(props: props & FormikProps<FormValues>) =>{
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleTask = async(props: props, _actions: FormikHelpers<props>) =>{
     // TODO
     if(!taskId){
       if(userCredential){
@@ -84,14 +81,14 @@ export const ModifyTask = () => {
     }
   }
 
-  const toNewTaskView = () => {
-    setIsLoading(true)
-    setInitialValue({name: '', description: '', isComplete: false})
-    setTimeout(() => {
-      setIsLoading(false)
-    },300)
-    navigate('/tasks')
-  }
+  // const toNewTaskView = () => {
+  //   setIsLoading(true)
+  //   setInitialValue({name: '', description: '', isComplete: false})
+  //   setTimeout(() => {
+  //     setIsLoading(false)
+  //   },300)
+  //   navigate('/tasks')
+  // }
 
   useEffect(()=>{
         // TODO bring information
@@ -124,7 +121,7 @@ console.log(taskId);
         :
         <Formik
         initialValues={initialValue}
-        onSubmit={(values) => handleTask(values)}
+        onSubmit={(values: props, actions: FormikHelpers<props>) => handleTask(values, actions)}
         >
         {
           ({values}) => (

@@ -11,10 +11,16 @@ import { User } from '../types/user'
 export const PostDetail = () => {
 
   const { postId } = useParams()
-  const {posts, triggerUpdatePosts, isLoading} = usePosts()
+  const {triggerUpdatePosts, isLoading} = usePosts()
 
-  const [userPostInfo, setUserPostInfo] = useState<User>({})
-  const [post, setPost] = useState<Post>({})
+  const [userPostInfo, setUserPostInfo] = useState<User>({email: '', tasks: []})
+  const [post, setPost] = useState<Post>({
+    name: '',
+    userId: '',
+    topics: [],
+    body: '',
+    comments: []
+  })
   const [comment, setComment] = useState('')
 
   const {isLogged, userCredential} = useContext(AppContext)

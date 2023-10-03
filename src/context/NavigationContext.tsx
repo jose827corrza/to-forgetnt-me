@@ -1,13 +1,17 @@
-import { createContext } from 'react';
+import { createContext, ReactNode } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 interface NavContext {
     navigate: NavigateFunction
 }
 
-export const NavContext = createContext<NavContext>({})
+interface Props {
+    children?: ReactNode
+}
+export const NavContext = createContext<NavContext>({navigate: useNavigate
+})
 
-export const NavContextProvider = ({children}) => {
+export const NavContextProvider = ({children}: Props) => {
 
     const navigate = useNavigate();
 

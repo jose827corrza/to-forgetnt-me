@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { Formik, Form, Field, FormikProps } from "formik"
+import { Formik, Form, Field, FormikHelpers } from "formik"
 
 import { loginUser, registerNewUser } from "../firebase/auth";
 import { AppContext } from "../context/AppContext";
@@ -23,15 +23,14 @@ export const Login = () => {
     }
 
 
-    interface FormValues {
-        email: string;
-        password: string;
-      }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     interface props {
         email: string
         password: string
     }
-    const handleLogIn = async(props: props & FormikProps<FormValues>) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleLogIn = async(props: props, _actions: FormikHelpers<props>) => {
         
         const { email, password} = props
         if(!isRegisterPage){
@@ -63,7 +62,8 @@ export const Login = () => {
         <Formik
             initialValues={{email: '', password: ''}}
             
-            onSubmit={(values) => handleLogIn(values)}>
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            onSubmit={(values:props, actions:FormikHelpers<props>) => handleLogIn(values, actions)}>
                 <Form className="md:flex">
                     <div className='grid md:flex my-2'>
                         <label htmlFor="email" className="text-black mx-3 font-bold">Email</label>
